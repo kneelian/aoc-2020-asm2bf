@@ -243,7 +243,7 @@ db 0
 	rcl r2, r1
 	inc r1
 	
-	jez r2, 0
+	jez r2, %end
 
 	@two
 		rcl r4, r3
