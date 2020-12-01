@@ -1,5 +1,5 @@
-stk 3
-; BFI tosses an error if the stack is 2
+stk 2
+; works with stack 2 now
 
 org 0
 
@@ -235,7 +235,7 @@ mov r6, 0
 	rcl r2, r1
 	inc r1
 	
-	jez r2, 0
+	jez r2, %parttwo
 	
 	@innerloop
 
