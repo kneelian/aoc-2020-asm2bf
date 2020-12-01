@@ -205,6 +205,13 @@ db 1530
 db 1743
 db 0
 
+; note from palaiologos
+; replace this with a lua macro
+;
+; for line in io.lines("input.txt") do
+;    print("db " .. line)
+; end
+
 ?jez=jz
 ; jump equal to zero
 
@@ -215,7 +222,7 @@ db 0
 ?cmov=cmo
 ?csub=csu
 ?cadd=cad
-; conditional push and pop, jump, jumpzero, move
+; conditional push and pop, jump, jumpzero, move, add and subtract
 
 ; r1 is mem pointer for x
 ; r2 is currently accessed mem location for x
@@ -226,14 +233,13 @@ db 0
 
 ; same principle as before
 ; we're straining the given memory options really hard
-; i'd have to totally re
+; i'd have to totally rethink the algorithm?
 
 ; mov r2, 1446
 ; mov r4, 1446
 ; mov r6, 1446
 
 @one
-
 	rcl r2, r1
 	inc r1
 	
