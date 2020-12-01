@@ -235,10 +235,13 @@ mov r6, 0
 	rcl r2, r1
 	inc r1
 	
-	ceq r2, 0
-	cjmp %parttwo
+	jez r2, 0
 	
 	@innerloop
+
+; 	; inner loop goes through the remaining combinations until it hits an appropriate sum
+;	; then it pushes the matching numbers and jumps to the end
+;	; otherwise it loops until it hits end of memory / [r3] = 0
 		
 		rcl r4, r3
 		inc r3
@@ -256,8 +259,6 @@ mov r6, 0
 		cjmp %mainloop
 		
 		jmp %innerloop
-	
-	jmp %mainloop
 	
 @parttwo
 	pop r1
