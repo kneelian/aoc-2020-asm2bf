@@ -1,4 +1,5 @@
 stk 3
+; BFI tosses an error if the stack is 2
 
 org 0
 
@@ -203,6 +204,7 @@ db 656
 db 1530
 db 1743
 db 0
+; Hardcoded input
 
 mov r1, 0
 mov r2, 0
@@ -225,24 +227,16 @@ mov r6, 0
 ; r3 is mem pointer for y
 ; r4 is currently accessed mem location for y
 ; r5 is temp
-; r6 is to clear conditional flag, will not be 1
-
-; could use f1 for temp storage
 
 @mainloop
-; recall rcl r1 r2 = mov r1 &r2
-; check if we finished looping
+; check if we finished looping ==> r1 + r2 = 2020
 ; otherwise return to beginning of loop
 
 	rcl r2, r1
 	inc r1
 	
-;  	out r2
-	
-; 	ceq r1, 200
 	ceq r2, 0
 	cjmp %parttwo
-	ceq r6, 1
 	
 	@innerloop
 		
@@ -251,32 +245,21 @@ mov r6, 0
 		
 		mov r5, r2
 		add r5, r4
-
-;  		out r5
-
 		
 		ceq r5, 2020
 		cpsh r2
 		cpsh r4
-		ceq r6, 1
+		cjmp %parttwo
 
-		
-; 		ceq r3, 200
 		ceq r4, 0
 		cmov r3, r1
 		cjmp %mainloop
-		ceq r6, 1
-		
-
 		
 		jmp %innerloop
-; 		out .m
 	
 	jmp %mainloop
-; 	out .n
 	
 @parttwo
-
 	pop r1
 	out r1
 	pop r2
